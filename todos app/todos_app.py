@@ -1,12 +1,4 @@
-def get_todos(filepath):
-    with open(filepath, 'r') as file:
-        todos = file.readlines()
-    return todos
-
-def save_todos(filepath, todos_arg):
-    with open(filepath, 'w') as file:
-        file.writelines(todos_arg)
-   
+import functions
 
 while True: 
     user_action = input("Type add, show, edit, complete or exit :")
@@ -14,13 +6,13 @@ while True:
 
     if user_action.startswith("add"):
         todo = user_action[4:]
-        todos = get_todos("todos.txt")
+        todos = functions.get_todos()
 
         todos.append(todo + '\n')
-        save_todos("todos.txt", todos)
+        functions.save_todos("todos.txt", todos)
 
     elif user_action.startswith("show"):
-        todos = get_todos("todos.txt")
+        todos = functions.get_todos()
         for index, item in enumerate(todos, start=1):
             item = item.strip('\n')
             row = f"{index}-{item}"
@@ -31,10 +23,10 @@ while True:
             number = int(user_action[5:])
             print(number)
             number = number - 1
-            todos = get_todos("todos.txt")
+            todos = functions.get_todos()
             new_value = input("Enter new todos : ")
             todos[number] = new_value + '\n'  
-            save_todos("todos.txt", todos)
+            functions.save_todos("todos.txt", todos)
         except:
             print ("Your Command is not valid")
             continue    
@@ -42,11 +34,11 @@ while True:
     elif user_action.startswith("complete"):
         try:
             number = int(user_action[9:])
-            todos = get_todos("todos.txt")
+            todos = functions.get_todos()
             index = number - 1
             todos_to_remove = todos[index].strip('\n')
             todos.pop(index)
-            save_todos("todos.txt", todos)
+            functions.save_todos("todos.txt", todos)
             message = f"todo {todos_to_remove} is removed from list..."
             print(message)
         except:
