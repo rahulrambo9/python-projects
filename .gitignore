@@ -1,0 +1,14 @@
+# Ignore Python virtual environment
+venv/
+
+# Ignore cache files
+__pycache__/
+
+# Ignore .env files and other secrets
+.env
+
+# Ignore logs
+*.log
+
+# Ignore specific folder
+my_folder_to_ignore/
